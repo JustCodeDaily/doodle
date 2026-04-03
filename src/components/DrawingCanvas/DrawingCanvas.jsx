@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import "./DrawingCanvas.css";
 
 export default function DrawingCanvas({ canvas }) {
   const {
@@ -27,8 +28,10 @@ export default function DrawingCanvas({ canvas }) {
       {/* ---- Toolbar Row ---- */}
       {/* Contains the tool buttons, size slider, and color picker */}
       <div className="canvas-toolbar">
-        {/* Left side: pen/eraser tools */}
-        <div className="tool-group">
+        {/* Left side container groups tools and size/color to the left */}
+        <div className="toolbar-left" style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+          {/* Left side: pen/eraser tools */}
+          <div className="tool-group drawing-tools">
           {/* Pen button — active when tool === 'pen' */}
           <button
             className={`tool-btn ${tool === "pen" ? "active" : ""}`}
@@ -99,6 +102,7 @@ export default function DrawingCanvas({ canvas }) {
               className="color-input"
             />
           </label>
+        </div>
         </div>
 
         {/* Right side: undo + clear actions */}

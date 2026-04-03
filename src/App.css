@@ -1,0 +1,99 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  max-width: 1200px;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .app-main {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.app-left {
+  flex: 0 1 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* Remove gap so footer connects to canvas */
+  min-width: 0; /* Prevents flex flex-child from overflowing */
+}
+
+.app-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-top: none; /* Connect to the canvas seamlessly */
+  border-radius: 0 0 var(--radius-md) var(--radius-md); /* Round bottom only */
+  padding: 16px;
+}
+
+.footer-action-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.name-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.name-input:focus {
+  border-color: var(--color-primary);
+}
+
+.score-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.score-btn:hover {
+  background-color: #0d5f49;
+}
+
+.app-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .app-right {
+    width: 340px;
+    flex-shrink: 0;
+  }
+}
