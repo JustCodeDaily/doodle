@@ -48,6 +48,16 @@ export function useCanvas(width = 600, height = 400) {
     };
   }, []);
 
+  const saveSnapshot = useCallback(() => {
+    const canvas = canvasRef.current;
+    const ctx = ctxRef.current;
+    if (!canvas || !ctx) return;
+    // getImageData copies EVERY pixel into an array
+    const snapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    // Keep max 30 snapshots to avoid eating too much memory
+    setHistory((prev) => [...prev.slice(-29), snapshot]);
+  }, []);
+
   const startDrawing = useCallback(
     (e) => {
       e.preventDefault();
@@ -82,16 +92,6 @@ export function useCanvas(width = 600, height = 400) {
     if (!ctx) return;
     ctx.closePath();
     isDrawing.current = false;
-  }, []);
-
-  const saveSnapshot = useCallback(() => {
-    const canvas = canvasRef.current;
-    const ctx = ctxRef.current;
-    if (!canvas || !ctx) return;
-    // getImageData copies EVERY pixel into an array
-    const snapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    // Keep max 30 snapshots to avoid eating too much memory
-    setHistory((prev) => [...prev.slice(-29), snapshot]);
   }, []);
 
   const undo = useCallback(() => {
@@ -135,7 +135,6 @@ export function useCanvas(width = 600, height = 400) {
     startDrawing,
     draw,
     stopDrawing,
-    saveSnapshot,
     undo,
     clearCanvas,
     exportAsBase64,

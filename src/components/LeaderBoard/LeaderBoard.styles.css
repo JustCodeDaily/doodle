@@ -1,0 +1,123 @@
+.leaderboard {
+  padding: 16px;
+  flex: 1;
+}
+
+.lb-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.lb-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Live indicator: green dot + text */
+.lb-live {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.lb-live-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  /* Gentle pulse animation to indicate "live" */
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.lb-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.lb-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+/* Last row doesn't need a bottom border */
+.lb-row:last-child {
+  border-bottom: none;
+}
+
+/* Rank number — fixed width so everything aligns */
+.lb-rank {
+  width: 22px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  color: var(--color-text-hint);
+}
+
+/* Medal colors for top 3 */
+.rank-gold {
+  color: var(--color-gold);
+}
+.rank-silver {
+  color: var(--color-silver);
+}
+.rank-bronze {
+  color: var(--color-bronze);
+}
+
+/* Name takes up remaining space */
+.lb-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text);
+  /* Truncate long names with ellipsis */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Subject emoji */
+.lb-subject {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Score value */
+.lb-score {
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  color: var(--color-primary);
+  min-width: 24px;
+  text-align: right;
+}
+
+/* Empty state */
+.lb-empty {
+  font-size: 13px;
+  color: var(--color-text-hint);
+  text-align: center;
+  padding: 20px 0;
+}
