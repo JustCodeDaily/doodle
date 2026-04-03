@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useCanvas } from "./hooks/useCanvas";
 import SubjectPicker from "./components/SubjectPicker/SubjectPicker";
 import DrawingCanvas from "./components/DrawingCanvas/DrawingCanvas";
@@ -6,6 +6,18 @@ import ScoreCard from "./components/ScoreCard/ScoreCard";
 import LeaderBoard from "./components/LeaderBoard/LeaderBoard";
 import Header from "./components/Header";
 import "./App.css";
+
+import {
+  collection,
+  query,
+  orderBy,
+  limit,
+  onSnapshot,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+import { db } from "./lib/firebase";
+import { scoreWithGemini } from "./lib/gemini";
 
 function App() {
   const canvas = useCanvas(600, 400);
@@ -32,20 +44,72 @@ function App() {
     localStorage.setItem("jmn-dark-mode", String(darkMode));
   }, [darkMode]);
 
+  useEffect(() => {
+    const q = query(
+      collection(db, "scores"),
+      orderBy("score", "desc"),
+      limit(10),
+    );
+
+    const unsubscribe = onSnapshot(
+      q,
+      (snapshot) => {
+        const scores = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setLeaderboard(scores);
+      },
+      (err) => {
+        console.error("Firestore listener error:", err);
+      },
+    );
+    return () => unsubscribe();
+  }, []);
+
+  const handleScore = async () => {
+    if (!name.trim()) {
+      setError("Enter your name first!");
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const base64Image = canvas.exportAsBase64();
+      const result = await scoreWithGemini(base64Image, subject);
+      setScore(result.score);
+      setFeedback(result.feedback);
+      setRoast(result.roast);
+
+      // Save to Firebase Leaderboard
+      await addDoc(collection(db, "scores"), {
+        name: name.trim(),
+        subject,
+        score: result.score,
+        createdAt: serverTimestamp(),
+      });
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  console.log("Gemini key exists:", !!import.meta.env.VITE_GEMINI_API_KEY);
   return (
     <div className="app-container">
       <Header
         darkMode={darkMode}
         onToggleDark={() => setDarkMode((prev) => !prev)}
       />
-      
+
       <main className="app-main">
         <div className="app-left">
           <DrawingCanvas canvas={canvas} />
-          
+
           <div className="app-footer">
             <SubjectPicker selected={subject} onSelect={setSubject} />
-            
+
             <div className="footer-action-row">
               <input
                 className="name-input"
@@ -54,12 +118,22 @@ function App() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-              <button 
+              <button
                 className="score-btn"
-                onClick={() => alert("Gemini scoring coming in Phase 3!")}
+                onClick={handleScore}
+                disabled={loading}
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
                 </svg>
                 Score
               </button>
