@@ -96,7 +96,6 @@ function App() {
   };
 
   console.log("Gemini key exists:", !!import.meta.env.VITE_GEMINI_API_KEY);
-
   return (
     <div className="app-container">
       <Header
