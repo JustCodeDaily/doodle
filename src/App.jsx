@@ -3,7 +3,7 @@ import { useCanvas } from "./hooks/useCanvas";
 import SubjectPicker from "./components/SubjectPicker/SubjectPicker";
 import DrawingCanvas from "./components/DrawingCanvas/DrawingCanvas";
 import ScoreCard from "./components/ScoreCard/ScoreCard";
-import Leaderboard from "./components/Leaderboard/Leaderboard";
+import LeaderBoard from "./components/LeaderBoard/LeaderBoard";
 
 function App() {
   const canvas = useCanvas(600, 400);
@@ -59,7 +59,7 @@ function App() {
         />
 
         {/* Live leaderboard */}
-        <Leaderboard scores={leaderboard} />
+        <LeaderBoard scores={leaderboard} />
       </div>
     </div>
   );

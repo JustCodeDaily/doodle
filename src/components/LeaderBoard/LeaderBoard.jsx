@@ -12,7 +12,7 @@ function getRankClass(index) {
   return "";
 }
 
-export default function Leaderboard({ scores }) {
+export default function LeaderBoard({ scores }) {
   return (
     <div className="leaderboard card">
       <div className="lb-header">
