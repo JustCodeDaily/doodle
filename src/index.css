@@ -5,6 +5,7 @@
   --color-primary-light: #e1f5ee;
   --color-accent: #534ab7; /* Purple — selected states */
   --color-accent-light: #eeedfe;
+  --color-accent-dark: #3a3285;
   /* Backgrounds */
   --color-bg: #faf9f6; /* Page background */
   --color-surface: #ffffff; /* Card backgrounds */
@@ -22,8 +23,39 @@
   /* Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
+  /* Score Colors */
+  --color-score-high: #2ae690; /* Bright neon seaform green */
+  --color-score-mid: #f5b041;
+  --color-score-low: #e74c3c;
+  /* Medals */
+  --color-gold: #f5b041;
+  --color-silver: #eae9e5;
+  --color-bronze: #e67e22;
   /* Canvas */
   --canvas-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+  --color-primary: #129373;
+  --color-primary-light: #1a3c31;
+  --color-accent: #7a6df5;
+  --color-accent-light: #2c294d;
+  --color-accent-dark: #a298ff;
+  --color-bg: #121210;
+  --color-surface: #1e1e1c;
+  --color-surface-alt: #2a2a28;
+  --color-text: #eae9e5;
+  --color-text-muted: #a3a19b;
+  --color-text-hint: #706f69;
+  --color-border: #3d3c38;
+  --color-border-light: #2b2a28;
+  --color-score-high: #2ae690;
+  --color-score-mid: #f5b041;
+  --color-score-low: #e74c3c;
+  --color-gold: #f5b041;
+  --color-silver: #eae9e5;
+  --color-bronze: #e67e22;
+  --canvas-bg: #ffffff; /* Keep canvas white for drawings */
 }
 *,
 *::before,

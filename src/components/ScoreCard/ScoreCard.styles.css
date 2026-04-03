@@ -54,33 +54,34 @@
 
 .sc-score {
   font-family: var(--font-heading);
-  font-size: 56px;
+  font-size: 96px;
   font-weight: 700;
   line-height: 1;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
 }
 
 .sc-max {
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 28px;
+  font-weight: 600;
   color: var(--color-text-hint);
 }
 
 .sc-feedback {
-  font-size: 13px;
-  color: var(--color-text-muted);
-  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--color-text);
+  margin-bottom: 12px;
   line-height: 1.5;
 }
 
 .sc-roast {
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 600;
   color: var(--color-text);
   font-style: italic;
   line-height: 1.5;
-  padding: 8px 12px;
-  background: var(--color-surface-alt);
-  border-radius: var(--radius-sm);
+  margin-top: 12px;
 }
 
 .sc-empty {
