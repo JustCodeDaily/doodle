@@ -23,15 +23,22 @@
   gap: 6px;
 }
 
+.tool-group.drawing-tools {
+  background: var(--color-surface-alt);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-light);
+}
+
 .tool-btn {
   width: 34px;
   height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--color-border);
+  border: 1px solid transparent;
   border-radius: var(--radius-sm);
-  background: var(--color-surface);
+  background: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
   transition: all 0.15s ease;
@@ -40,12 +47,12 @@
 /* Active tool gets the teal treatment */
 .tool-btn.active {
   background: var(--color-primary);
-  border-color: var(--color-primary);
+  border-color: transparent;
   color: #ffffff;
 }
 
 .tool-btn:hover:not(.active) {
-  border-color: var(--color-text-muted);
+  background: var(--color-surface-alt);
 }
 
 .size-label,
@@ -69,12 +76,12 @@
   color: var(--color-text-hint);
 }
 
-/* The native color input is a tiny square — we style it to look nicer */
+/* The native color input is styled to look like a small rounded square */
 .color-input {
   width: 24px;
   height: 24px;
   border: 1px solid var(--color-border);
-  border-radius: 50%;
+  border-radius: 4px;
   padding: 0;
   cursor: pointer;
   background: none;
@@ -86,7 +93,7 @@
 
 .color-input::-webkit-color-swatch {
   border: none;
-  border-radius: 50%;
+  border-radius: 2px;
 }
 
 .action-btn {
@@ -119,7 +126,7 @@
   display: block;
   border: 1px solid var(--color-border-light);
   border-top: none;
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  border-radius: 0; /* Changed to 0 so it connects completely to the footer below */
   background: var(--canvas-bg);
   cursor: crosshair;
   touch-action: none; /* Prevents browser gestures while drawing */

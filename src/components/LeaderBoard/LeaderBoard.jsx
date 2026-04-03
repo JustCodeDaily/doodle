@@ -1,4 +1,5 @@
 import { SUBJECTS } from "../SubjectPicker/SubjectPicker";
+import "./LeaderBoard.styles.css";
 
 function getSubjectEmoji(subjectId) {
   const found = SUBJECTS.find((s) => s.id === subjectId);

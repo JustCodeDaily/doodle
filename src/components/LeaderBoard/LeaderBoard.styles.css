@@ -11,9 +11,9 @@
 }
 
 .lb-title {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--color-text-muted);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -22,16 +22,16 @@
 .lb-live {
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  color: var(--color-primary);
-  font-weight: 500;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--color-score-high);
+  font-weight: 600;
 }
 
 .lb-live-dot {
-  width: 6px;
-  height: 6px;
-  background: var(--color-primary);
+  width: 8px;
+  height: 8px;
+  background: var(--color-score-high);
   border-radius: 50%;
   /* Gentle pulse animation to indicate "live" */
   animation: pulse 2s ease-in-out infinite;
@@ -55,8 +55,8 @@
 .lb-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 0;
+  gap: 16px;
+  padding: 12px 0;
   border-bottom: 1px solid var(--color-border-light);
 }
 
@@ -67,12 +67,12 @@
 
 /* Rank number — fixed width so everything aligns */
 .lb-rank {
-  width: 22px;
+  width: 24px;
   text-align: center;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   font-family: var(--font-heading);
-  color: var(--color-text-hint);
+  color: var(--color-text);
 }
 
 /* Medal colors for top 3 */
@@ -89,8 +89,8 @@
 /* Name takes up remaining space */
 .lb-name {
   flex: 1;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 700;
   color: var(--color-text);
   /* Truncate long names with ellipsis */
   overflow: hidden;
@@ -106,11 +106,11 @@
 
 /* Score value */
 .lb-score {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   font-family: var(--font-heading);
-  color: var(--color-primary);
-  min-width: 24px;
+  color: var(--color-score-high);
+  min-width: 32px;
   text-align: right;
 }
 
