@@ -1,5 +1,11 @@
+import SubjectPicker from "./components/SubjectPicker/SubjectPicker";
+
 function App() {
-  return 5;
+  return (
+    <>
+      <SubjectPicker />
+    </>
+  );
 }
 
 export default App;
